@@ -1,0 +1,249 @@
+<html>
+
+<head>
+    <title>Assignment Three</title>
+     
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:wght@300&family=Michroma&family=ZCOOL+QingKe+HuangYou&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            background-color: black;
+            color: white;
+            /* opacity: .;  */
+
+        }
+
+        .header {
+            background-image: url('clip.jpg');
+            background-position: center;
+            height: 30vh;
+            width: 98%;
+            margin: 1%;
+            font-size: xx-large;
+            color: white;
+            font-family: 'Michroma', sans-serif;
+
+
+        }
+
+        name {
+            position: absolute;
+            color: lightgrey;
+            opacity: 1;
+            top: 160px;
+            font-family: 'ZCOOL QingKe HuangYou', cursive;
+            right: 55px;
+        }
+
+        name:hover {
+            cursor: pointer;
+            color: white;
+        }
+
+
+
+        .footer {
+            margin: 1%;
+            background-color: black;
+            color: orange;
+            height: 68vh;
+            width: 98%;
+            font-size: large;
+            /* font-family: 'Orbitron', sans-serif; */
+            text-align: center;
+            font-family: 'Cinzel', serif;
+
+
+        }
+
+        img {
+            margin: 4%;
+            width: 60%;
+            height: 40vh;
+            align: right;
+            border: .2vw solid black;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        img:hover {
+            cursor: pointer;
+
+            border: 7px solid blue;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .block {
+            float: left;
+            width: 22.5%;
+            height: 68vh;
+            margin: 1%;
+            background-color: white;
+            color: black;
+            border: .2vw solid black;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        /* .block2 {
+            width: 23%;
+            height: 68vh;
+            float: left;
+            background-color: #0A5E2AFF;
+            margin: 0%;
+            border: .2vw solid black;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        .block3 {
+            width: 23%;
+            height: 68vh;
+            float: left;
+            background-color: #0A5E2AFF;
+            margin: 0% 2.7% 0% 2.5%;
+            border: .2vw solid black;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+        }
+
+        .block4 {
+            width: 22%;
+            height: 68vh;
+            float: right;
+            background-color: #0A5E2AFF;
+            margin: 0%;
+            border: .2vw solid black;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+
+        } */
+
+        input[type=search] {
+            width: 98%;
+            padding: .5% 1%;
+            margin: 1%;
+            font-size: 30px;
+            box-sizing: border-box;
+            align: center;
+            font-family: 'Orbitron', sans-serif;
+            opacity: .5;
+        }
+
+
+        .button {
+            background-color: white;
+            border: 2px solid black;
+            color: black;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 10px 2px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+
+        }
+
+        .button:hover {
+            background-color: green;
+            color: white;
+
+            border: 2px solid white;
+            box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+        }
+
+        h2 {
+            color: black;
+            background-color: white;
+        }
+
+        h2:hover {
+            color: red;
+            cursor: pointer;
+        }
+
+        marquee {
+            font-family: 'Cormorant Garamond', serif;
+            align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <input type="search" id="movie" onkeyup="load()" placeholder="Search for movies here..."><br>
+        <name>- Pratik Thorat</name>
+    </div>
+
+
+    <div class="footer">
+        <p id="demo"></p>
+
+        <script>
+
+            function load() {
+
+                var start = "http://www.omdbapi.com/?s=";
+
+                var apikey = '&apikey=380bff5f';
+
+                var userinput = document.getElementById("movie").value;
+
+                var url = start + userinput + apikey;
+
+                var xhttp = new XMLHttpRequest();
+
+
+
+                xhttp.onreadystatechange = function () {
+
+
+
+                    if (this.readyState == 4 && this.status == 200) {
+
+                        var a = JSON.parse(xhttp.responseText);
+
+                        if (a && a.Search) {
+
+
+
+
+                            var rawstring = JSON.stringify(a);
+                            var b = JSON.parse(rawstring);
+
+
+                            for (i = 0; i < b.Search.length; i++) {
+
+                                var title = b.Search[i].Title;
+                                var year = b.Search[i].Year;
+                                var posterurl = b.Search[i].Poster;
+                                var imdb = b.Search[i].imdbID;
+                                console.log(title,year,imdb);
+                                // document.getElementById("demo").innerHTML = title;
+
+                                document.getElementById("demo").innerHTML += "<div class='block'><img src=" + posterurl + "><br><h2>" + title + "</h2>Year of Release :" + year + "<br>IMDB-ID: " + imdb + "</div>";
+                            }
+
+
+                        }
+                    }
+                };
+
+                xhttp.open('GET', url);
+                xhttp.send();
+
+
+            }
+
+
+
+        </script>
+    </div>
+
+</body>
+
+</html>
